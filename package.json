@@ -1,0 +1,32 @@
+{
+  "name": "blog",
+  "version": "1.0.0",
+  "main": "main.js",
+  "scripts": {
+    "start": "nodemon --inspect main.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HoangDinh2k4/expressJS_blog.git"
+  },
+  "keywords": [
+    "f8",
+    "blog",
+    "NodeJS",
+    "expressJS"
+  ],
+  "author": "dinhmaster",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/HoangDinh2k4/expressJS_blog/issues"
+  },
+  "homepage": "https://github.com/HoangDinh2k4/expressJS_blog#readme",
+  "description": "",
+  "dependencies": {
+    "express": "^4.19.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.4"
+  }
+}
