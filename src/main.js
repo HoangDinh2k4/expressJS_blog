@@ -6,6 +6,11 @@ const port = 3000
 
 const route = require('./routes')
 
+const db = require('./config/db')
+
+//connect to DB
+db.connect();
+
 app.use(express.urlencoded({
     extended: true
 }));
@@ -22,5 +27,5 @@ app.set('views', './src/resources/views');
 route(app);
 
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
+  console.log(`App listening on port ${port}`)
 })
