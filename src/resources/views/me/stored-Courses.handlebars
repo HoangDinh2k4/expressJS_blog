@@ -1,0 +1,77 @@
+<div class="mt-4">
+    <h3>Khóa học của tôi</h3>
+
+        <table class="table mt-4">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Tên khóa học</th>
+                    <th scope="col">Trình độ</th>
+                    <th scope="col" colspan="2">Thời gian tạo</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each courses}}
+                <tr>
+                    <th scope="row">{{@index}}</th>
+                    <td>{{this.name}}</td>
+                    <td>{{this.level}}</td>
+                    <td>{{this.createAt}}</td>
+                    <td>
+                        <a href="/courses/{{this._id}}/edit" class="btn btn-link">Update</a>
+                        <a href="" class="btn btn-link" data-bs-id="{{this._id}}" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Delete</a>
+                    </td>
+                </tr>
+                {{/each}}
+                
+            </tbody>
+        </table>
+</div>
+
+<!-- modal delete course -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">Delete Course</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Are you sure to delete this course?
+      </div>
+      <div class="modal-footer">
+        <button id="btn-delete-course" type="button" class="btn btn-danger">Delete</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>  
+
+
+<form name="delete-course-form" method="POST"></form>
+
+<script>
+
+
+        const staticBackdrop = document.getElementById('staticBackdrop')
+        var courseID;
+        var deleteCourseForm = document.forms['delete-course-form']
+        var btnDeleteCourse = document.getElementById('btn-delete-course');
+
+        if (staticBackdrop) {
+            staticBackdrop.addEventListener('show.bs.modal', event => {
+                // Button that triggered the modal
+                const button = event.relatedTarget  
+                // Extract info from data-bs-* attributes
+                courseID = button.getAttribute('data-bs-id')
+            })
+        }
+        
+        //when delete course btn clicked
+        btnDeleteCourse.onclick = function() {
+            deleteCourseForm.action = '/courses/' + courseID + '?_method=DELETE';
+            deleteCourseForm.submit();
+        }
+
+
+</script>
